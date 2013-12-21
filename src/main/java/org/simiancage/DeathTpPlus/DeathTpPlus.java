@@ -406,7 +406,7 @@ public class DeathTpPlus extends JavaPlugin {
 	public boolean isWorldGuardEnabled() {
 		return worldGuardEnabled;
 	}
-
+        
 	public WorldGuardPlugin getWorldGuardPlugin() {
 		return worldGuardPlugin;
 	}

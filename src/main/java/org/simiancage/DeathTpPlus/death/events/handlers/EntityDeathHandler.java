@@ -29,6 +29,8 @@ import org.simiancage.DeathTpPlus.tomb.workers.TombWorker;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import me.ryanhamshire.GriefPrevention.Claim;
+import me.ryanhamshire.GriefPrevention.GriefPrevention;
 
 //~--- JDK imports ------------------------------------------------------------
 
@@ -230,7 +232,7 @@ public class EntityDeathHandler {
 		if (!plugin.hasPerm(player, "tombstone.use", false)) {
 			return;
 		}
-
+                
 		log.debug(player.getName() + " died.");
 
 		List<ItemStack> deathDrops = deathDetail.getEntityDeathEvent().getDrops();
@@ -245,7 +247,14 @@ public class EntityDeathHandler {
 //      Get the current player location.
 		Location loc = player.getLocation();
 		Block block = returnGoodPlace(player, loc);
-
+                //Check if they died in a claim
+                    Claim claim = GriefPrevention.instance.dataStore.getClaimAt(loc, true, null);
+                    if(claim!=null) {
+                        plugin.sendMessage(player, "You died in a protected claim. Dropping inventory");
+			log.debug(player.getName() + " died in GP claim, dropping inventory");
+                        return;
+                    }
+                    
 		if (plugin.isWorldGuardEnabled() && !plugin.getWorldGuardPlugin().canBuild(player, block)) {
 			plugin.sendMessage(player, "You died in a protected region. Dropping inventory");
 			log.debug(player.getName() + " died in WorldGuard Region, dropping inventory");
