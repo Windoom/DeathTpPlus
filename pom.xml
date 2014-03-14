@@ -42,11 +42,6 @@
 			<version>${bukkit.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.getspout</groupId>
-			<artifactId>spoutpluginapi</artifactId>
-			<version>dev-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>net.milkbowl.vault</groupId>
 			<artifactId>Vault</artifactId>
 			<version>${vault.version}</version>
